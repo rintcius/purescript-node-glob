@@ -2,10 +2,8 @@ module Node.Glob where
 
 import Prelude
 import Control.Monad.Eff (Eff)
-import Control.Monad.Eff.Console (CONSOLE, log)
 import Control.Monad.Eff.Exception (EXCEPTION)
-import Data.Function.Uncurried (Fn2, Fn3, runFn2, runFn3)
-import Data.Show (show)
+import Data.Function.Uncurried (Fn2, runFn2)
 import Node.FS (FS)
 import Node.FS.Internal (mkEff)
 
