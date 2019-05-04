@@ -1,11 +1,9 @@
 module Node.Glob where
 
 import Prelude
-import Control.Monad.Eff (Eff)
-import Control.Monad.Eff.Exception (EXCEPTION)
+import Effect (Effect)
 import Data.Function.Uncurried (Fn2, runFn2)
-import Node.FS (FS)
-import Node.FS.Internal (mkEff)
+import Node.FS.Internal (mkEffect)
 
 foreign import unsafeRequireGlob :: forall props. { | props }
 
@@ -16,8 +14,8 @@ glob ::
   }
 glob = unsafeRequireGlob
 
-sync :: forall eff opts. Pattern
+sync :: forall opts. Pattern
         -> { | opts }
-        -> Eff (fs :: FS, err :: EXCEPTION | eff) (Array String)
-sync pattern options = mkEff $ \_ -> runFn2
+        -> Effect (Array String)
+sync pattern options = mkEffect $ \_ -> runFn2
   glob.sync pattern options
